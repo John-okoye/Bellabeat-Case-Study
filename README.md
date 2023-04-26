@@ -66,36 +66,113 @@ p1 + p2
 ```
 ![](https://github.com/John-okoye/Bellabeat-Case-Study/blob/main/Visuals/Column%20charts%201.png)
 
+From the graph above we can say the following;  
+
+* Users are getting less than 8 hours of recommend sleep each day  
+* Users burn the most calories on Mondays, Tuesdays and Saturdays  
 
 
 
 
+#### <span style="color:#22223b"> 5.2 Daily steps and Distance per weekday </span> <a ></a>
+```{r}
+p3 <- ggplot(weekday_summary) +
+    geom_col(mapping = aes(x = weekday, y = steps), fill = "#4960ae") +
+    labs(title = "Daily steps per weekday", x= "", y = "") +
+    theme(axis.text.x = element_text(angle = 45,vjust = 0.5, hjust = 1))
+
+p4 <- ggplot(weekday_summary) +
+    geom_col(mapping = aes(x = weekday, y = distance), fill = "#6b7b8c")+
+    labs(title = "Distance per weekday (km)", x= "", y = "") +
+    theme(axis.text.x = element_text(angle = 45,vjust = 0.5, hjust = 1))
+p3 + p4
+```
+![](https://github.com/John-okoye/Bellabeat-Case-Study/blob/main/Visuals/Column%20charts%202.png)
+
+From the graph above we can say the following;  
+
+* Users have more steps on Mondays, Tuesdays and Saturdays. Little wonder these are the days with the most burnt calories.  
+* The distance covered correlates with the daily steps and also the calories burned. 
+
+
+#### <span style="color:#22223b"> 5.3 Correlations </span> <a ></a>
+
+* Total Steps and Clalories burned  
+* Sedentary minutes and Calories burned  
+```{r}
+p5 <- ggplot(daily_activity_sleep, aes(x= TotalSteps, y= Calories))+
+    geom_jitter() +
+    geom_smooth(color = "#e60049") + 
+    labs(title = "Daily steps vs Calories", x = "Daily steps", y= "Calories") +
+    theme(panel.background = element_blank(),
+          plot.title = element_text( size=14))
+
+p6 <- ggplot(daily_activity_sleep, aes(x= SedentaryMinutes, y=Calories))+
+    geom_jitter() +
+    geom_smooth(color = "#e60049") + 
+    labs(title = "Sedentary Minutes vs Calories", x = "Sedentary Minutes", y= "Calories") +
+    theme(panel.background = element_blank(),
+          plot.title = element_text( size=14))
+p5 + p6
+```
+![](https://github.com/John-okoye/Bellabeat-Case-Study/blob/main/Visuals/Scatter%20plots.png)
+
+From the visual above, it is clear that;  
+
+* A positive relationship exists between the Daily steps and Calories. Suffice to say that if users take more steps, they're likely to burn more calories
+* There's a negative relationship between the sedentary minutes and the calories burned which makes sense because the more sedentary minutes accumulated, the less calories are burned by the user.  
 
 
 
 
+#### <span style="color:#22223b"> 5.4 Use of Smart Device </span> <a ></a>
+Some interesting insights can be drawn from how often users use smart devices. To this end, we will first group users according to the number of days they used smart devices.
+Visual showing the percentage of total each usage level occupies
+
+```{r}
+daily_use_perc %>%
+  ggplot(aes(x="",y=total_perc, fill=usage_level)) +
+  geom_bar(stat = "identity", width = 1)+
+  coord_polar("y", start=0)+
+  theme_minimal()+
+  theme(axis.title.x= element_blank(),
+        axis.title.y = element_blank(),
+        panel.border = element_blank(), 
+        panel.grid = element_blank(), 
+        axis.ticks = element_blank(),
+        axis.text.x = element_blank(),
+        plot.title = element_text(hjust = 0.5, size=20, face = "bold")) +
+  geom_text(aes(label = labels),
+            position = position_stack(vjust = 0.5))+
+  scale_fill_manual(values = c("#a45167","#cc98a7","#ecdbdc"),
+                    labels = c("High use - 21 to 31 days",
+                               "Moderate use - 11 to 20 days",
+                               "Low use - 1 to 10 days"))+
+ labs(title="Daily use of smart device")
+```
+![](https://github.com/John-okoye/Bellabeat-Case-Study/blob/main/Visuals/Pie%20chart%20showing%20Daily%20use%20of%20smart%20devices.png)
+
+From the above visual;
+
+* 50% of the users of users their device quite frequently - between 21 to 31 days.  
+* 12% use their device - 11 to 20 days.  
+* 38% rarely use their device - 1 to 10 days.  
 
 
-
-
-
-
-
-
-
+# <span style="color:#22223b"> 6. Conclusion and Recommendations (Act Phase) </span> <a id="analyse_5"></a>
 
 Bellabeat is a successful small company that has the potential to become a larger player in the global smart device market.
 
-In order to have more a more robust recommedation to enable Bellabeat become a larger player, I first recommend that exixting smart devices should be used to collect more detailed data of customers as regard age and demographics. Furthermore, online surveys is another way Bellabeat can uncover more details about their customers as well as their preferences. 
+In order to have more a more robust recommendation to enable Bellabeat become a larger player, I first recommend that existing smart devices should be used to collect more detailed data of customers as regard age and demographics. Furthermore, online surveys is another way Bellabeat can uncover more details about their customers as well as their preferences. 
 
-However, from the above analysis, I reccommend the following for the **Bellabeat Time product**;
+However, from the above analysis, I recommend the following for the **Bellabeat Time product**;
 
 |Recommendation| Description |
 |---| ---|
-|1. Sedentary Minutes Check | The analysis shows that users spend about 11hrs each day immobile. Users are most likely unaware of this for serveral reasons. A notification can be sent to users if they have been at the same time for too long to get up and take some steps or stretch to get blood flowing. 
+|1. Sedentary Minutes Check | The analysis shows that users spend about 11hrs each day immobile. Users are most likely unaware of this for several reasons. A notification can be sent to users if they have been at the same time for too long to get up and take some steps or stretch to get blood flowing. 
 |2. Sleep time| Users are not getting the recommended 8hrs of sleep daily. I recommend a notification to remind users when its bed time and time to get up. 
-|3. Goals | I consider it a good idea if the Bellabeat Time product can give users targets at the begining of day say, "Hello Mark, do you think you can burn 1000 calories today? well, let's see you try!."|4. Benefits| Most people don't like being told what to do more especially when its from a gadget. I recommend that periodically health fun facts are shown to users to remind them how important lower sedntary minutes, taking more steps, among other health tips are for the body.|
-|4. Featureas | To encourage more usage days, the Time Product can be made to appear more fashionable and elegant to go with a variety of attaires.
+|3. Goals | I consider it a good idea if the Bellabeat Time product can give users targets at the beginning of day say, "Hello Mark, do you think you can burn 1000 calories today? well, let's see you try!."|4. Benefits| Most people don't like being told what to do more especially when its from a gadget. I recommend that periodically health fun facts are shown to users to remind them how important lower sedentary minutes, taking more steps, among other health tips are for the body.|
+|4. Features | To encourage more usage days, the Time Product can be made to appear more fashionable and elegant to go with a variety of attires.
 
 
 
