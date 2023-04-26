@@ -48,7 +48,42 @@ To proceed with this, I need to load some relevant R packages to begin wrangling
 
 
 # <span style="color:#22223b"> 5. Analyse and Share Phase </span> <a id="analyse_5"></a>
-#### <span style="color:#22223b"> 4.1 Loading Packages </span> <a ></a>
+
+#### <span style="color:#22223b"> 5.1 Calories burned and Hours asleep per weekday </span> <a ></a>
+Visuals help identify trends more quickly. This visuals will give us a deeper understanding of weekday summaries
+```{r}
+p1 <- ggplot(weekday_summary) +
+    geom_col(mapping = aes(weekday, calories), fill = ("#12a4d9")) +
+    labs(title = "Calories burned on weekdays", x = "", y = "") +
+    theme(axis.text.x = element_text(angle = 45,vjust = 0.5, hjust = 1))
+
+p2 <- ggplot(weekday_summary) +
+    geom_col(mapping = aes(weekday, hours_asleep), fill = ("#24A897")) + 
+    geom_hline(yintercept = 8) +
+    labs(title = "Hours asleep per weekday", x = "", y = "") +
+    theme(axis.text.x = element_text(angle = 45,vjust = 0.5, hjust = 1))
+p1 + p2
+```
+![](https://github.com/John-okoye/Bellabeat-Case-Study/blob/main/Visuals/Column%20charts%201.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Bellabeat is a successful small company that has the potential to become a larger player in the global smart device market.
 
 In order to have more a more robust recommedation to enable Bellabeat become a larger player, I first recommend that exixting smart devices should be used to collect more detailed data of customers as regard age and demographics. Furthermore, online surveys is another way Bellabeat can uncover more details about their customers as well as their preferences. 
