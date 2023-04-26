@@ -47,9 +47,9 @@ To proceed with this, I need to load some relevant R packages to begin wrangling
 * library(patchwork)  
 
 
-
-# <span style="color:#22223b"> 5. Share Phase </span> <a id="analyse_5"></a>
-Bellabeat is a successful small company, but they have the potential to become a larger player in the global smart device market.
+# <span style="color:#22223b"> 5. Analyse and Share Phase </span> <a id="analyse_5"></a>
+#### <span style="color:#22223b"> 4.1 Loading Packages </span> <a ></a>
+Bellabeat is a successful small company that has the potential to become a larger player in the global smart device market.
 
 In order to have more a more robust recommedation to enable Bellabeat become a larger player, I first recommend that exixting smart devices should be used to collect more detailed data of customers as regard age and demographics. Furthermore, online surveys is another way Bellabeat can uncover more details about their customers as well as their preferences. 
 
@@ -61,3 +61,33 @@ However, from the above analysis, I reccommend the following for the **Bellabeat
 |2. Sleep time| Users are not getting the recommended 8hrs of sleep daily. I recommend a notification to remind users when its bed time and time to get up. 
 |3. Goals | I consider it a good idea if the Bellabeat Time product can give users targets at the begining of day say, "Hello Mark, do you think you can burn 1000 calories today? well, let's see you try!."|4. Benefits| Most people don't like being told what to do more especially when its from a gadget. I recommend that periodically health fun facts are shown to users to remind them how important lower sedntary minutes, taking more steps, among other health tips are for the body.|
 |4. Featureas | To encourage more usage days, the Time Product can be made to appear more fashionable and elegant to go with a variety of attaires.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
